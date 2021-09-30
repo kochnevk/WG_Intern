@@ -19,13 +19,20 @@ max.src = "img/max.png";
 
 cvs.addEventListener("click", function(e){
     maxX += 25;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    //alert(mouseX + " " + mouseY);
+
+    const rect = cvs.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    alert( x + "  " +y);
+
     move();
 })
 
 function move (){
+    
+    let cord1;
+    let cord2;
+
     for (let i=0; i < map.length; i++) {
         if (isBreak) {
             isBreak = false;
@@ -34,12 +41,20 @@ function move (){
         for (let j=0; j < map[i].length; j++){
             if( mouseX < (map[i][j].x) + 50) 
                 if (mouseY < (map[i][j].y) + 50) {
-                   // alert("We Here!" + map[i][j].x + " " + map[i][j].y );
+                    cord1 = i;
+                    cord2 = j;
                     isBreak = true;
                     break;
                 }
         }
     }
+
+//Проверка на занятость и покраска в желтый
+    if(cord1 != 0 && map[cord1-1][cord2].fac == "") map[cord1-1][cord2].fac = "Y"
+    if(cord2 != 0 && map[cord1][cord2-1].fac == "") map[cord1][cord2-1].fac = "Y"
+    if(cord1 != 4 && map[cord1+1][cord2].fac == "") map[cord1+1][cord2].fac = "Y"
+    if(cord2 != 4 && map[cord1][cord2+1].fac == "") map[cord1][cord2+1].fac = "Y"
+
 }
 
 function draw (){
@@ -48,7 +63,7 @@ function draw (){
 
     for (let i=0; i < map.length; i++) {
         for (let j=0; j < map[i].length; j++){
-            switch (map[i][j].clr) {
+            switch (map[i][j].fac) {
                 case "R" :
                     ctx.strokeStyle  = "red";
                     ctx.strokeRect(map[i][j].x, map[i][j].y, 50, 50);
@@ -70,6 +85,11 @@ function draw (){
                     ctx.fillStyle = "black";
                     ctx.fillRect(map[i][j].x, map[i][j].y, 50, 50);
                     break;
+                case "Y" :
+                    ctx.strokeStyle  = "gray";
+                    ctx.strokeRect(map[i][j].x, map[i][j].y, 50, 50);
+                    ctx.fillStyle = "yellow";
+                    ctx.fillRect(map[i][j].x+20, map[i][j].y+20, 10, 10);
                 default :
                     ctx.strokeStyle  = "gray";
                     ctx.strokeRect(map[i][j].x, map[i][j].y, 50, 50);
@@ -77,7 +97,7 @@ function draw (){
         }  
     }
 
-    ctx.drawImage(max, maxX, 275);
+    //ctx.drawImage(max, maxX, 275);
     requestAnimationFrame(draw);
 }
 
