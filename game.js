@@ -100,4 +100,4 @@ function draw() {
   }
 }
 
-max.onload = draw;
+window.onload = draw;
