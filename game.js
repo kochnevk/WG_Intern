@@ -43,6 +43,11 @@ cvs.addEventListener("click", function (e) {
   else move();
 });
 
+//Start
+let button0 = document.getElementById("Start");
+button0.addEventListener("click", function (e) {
+  draw();
+})
 //Концовка 1
 let button1 = document.getElementById("Fin1");
 button1.addEventListener("click", function (e) {
@@ -99,5 +104,3 @@ function draw() {
     }
   }
 }
-
-window.onload = draw;
