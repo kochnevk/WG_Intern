@@ -23,9 +23,10 @@ greenBanner.src = "img/greenBanner.png";
 dambledur.src = "img/dambledur.png";
 bvoken.src = "img/Bvoken.png";
 
-let maxX = 0;
+//Корды нажатия
 let mouseX = 0;
 let mouseY = 0;
+//Можно убрать, но нужен, чтобы после победы заблочилась доска
 let isWin = false;
 let canMove = false;
 let whatFin = 1;
