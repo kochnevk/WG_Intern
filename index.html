@@ -8,14 +8,30 @@
     <style>
       body {
         background-color: #adadad;
+        text-align: center;
+        font: italic small-caps bold 18px cursive;
+      }
+      P {
+        line-height: 0.8em;
       }
     </style>
   </head>
   <body>
     <h1>Геральдика Хогвартса (без пуффендуя (ну и ладно))</h1>
-    <p>Расставь все гербы правильно и получишь 100 очков !!!</p>
-    <canvas id="canvas" height="600" width="750"></canvas>
+    <p>
+      Правила игры: перед вами поле 5*5, состоящие из 15 гербов факультетов, 6
+      закрытых дверей и 4 пустых клеток.
+    </p>
+    <p>Ваша задача: избегая дверей, поставить гербы факультов под их баннеры</p>
+    <p>2 концовки: 1)Истинная 2)Super Max</p>
+    <input type="button" id="Fin1" value="Концовка 1">
+    <input type="button" id="Fin2" value="Концовка 2">
+    <input type="button" id="Reset" value="Заново">
+    <br><br>
+    <canvas id="canvas" height="600" width="500"></canvas>
     <script src="map.js"></script>
     <script src="game.js"></script>
+    <script src="move.js"></script>
+
   </body>
 </html>
